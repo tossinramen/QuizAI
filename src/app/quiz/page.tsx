@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProgressBar from "@/components/ui/progressBar";
+import { ChevronLeft, X } from "lucide-react";
+
+
+
 const questions = [
     {
         questionText: "What is React?",
@@ -50,8 +54,13 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1">
         <div className="position-sticky top-0 z-10 shadow-md py-4 w-full">
-            <header>
+            <header className='grid grid-cols-[auto,1fr,auto] grid-flow-col items-center justify-between py-2 gap-2'>
+                <Button size='icon' variant='outline'><ChevronLeft /></Button>
                 <ProgressBar value={(currentQuestion/ questions.length)*100}/>
+                <Button size='icon' variant= 'outline'>
+                    <X />
+                </Button>
+                
             </header>
         </div>
     <main className="flex justify-center flex-1">
