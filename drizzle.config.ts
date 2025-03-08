@@ -8,5 +8,6 @@ export default {
     connectionString:
       process.env.DATABASE_URL ||
       "postgres://postgres:postgres@localhost:5432/postgres",
+    ssl: { rejectUnauthorized: false }, // ✅ Fix for Supabase SSL
   },
 } satisfies Config;
