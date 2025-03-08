@@ -12,10 +12,22 @@ const ResultCard = (props: Props) => {
         return null
     }
     const text = isCorrect ? 'Correct!' : 'Incorrect! The correct answer is: ' + props.correctAnswer;
-    const borderClasses = isCorrect ? "border border-green-500" : "border border-red-500";
-
+    const borderClasses = clsx({
+        "border-green-500" : isCorrect,
+        "border-red-500": !isCorrect
+    })
   return (
-    <div className={borderClasses}>{text}</div>
+    <div className={cn(
+        borderClasses,
+        "border-2",
+        "rounded-lg",
+        "p-4",
+        "text-center",
+        "text-lg",
+        "font-semibold",
+        "my-4",
+        "bg-secondary"
+    )}>{text}</div>
   )
 }
 
