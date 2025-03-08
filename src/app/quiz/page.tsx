@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import ProgressBar from "@/components/ui/progressBar";
 import { ChevronLeft, X } from "lucide-react";
 import ResultCard from "./ResultCard";
-
+import QuizSubmission from "./QuizSubmission"
 
 const questions = [
     {
@@ -69,7 +69,17 @@ export default function Home() {
       }
       setIsCorrect(isCurrentCorrect);
     }
+    const scorePercentage: number = Math.round((score/questions.length)*100);
 
+    if (submitted) {
+      return (
+        <QuizSubmission
+        score = {score}
+        scorePercentage={scorePercentage}
+        totalQuestions={questions.length}
+        />
+      )
+    }
 
   return (
     <div className="flex flex-col flex-1">
