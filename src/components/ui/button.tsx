@@ -24,7 +24,7 @@ const buttonVariants = cva(
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        lg: "h-14 rounded-full px-3.5 py-5",
         icon: "h-10 w-10",
       },
     },
@@ -41,15 +41,42 @@ export interface ButtonProps
   asChild?: boolean
 }
 
+export const spanVariants = cva(
+  ["absolute", "h-14", "bottom-[-7px]", "w-full", "border-2", "left-0", "z-0"],
+  {
+    variants: {
+      variant: {
+        default: "hidden",
+        destructive:
+          "hidden",
+        outline:
+          "hidden",
+        secondary:
+          "hidden",
+        ghost: "hidden",
+        link: "hidden",
+        neo: "border-blue-900 bg-primary-shadow",
+      },
+    },
+    defaultVariants: {
+      variant: "default"
+    }
+  }
+)
+
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
+      <div>
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />
+      <span className={cn(spanVariants({variant}))}></span>
+      </div>
     )
   }
 )

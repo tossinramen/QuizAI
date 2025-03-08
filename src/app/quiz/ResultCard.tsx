@@ -1,6 +1,7 @@
 import React from 'react'
 import { clsx } from 'clsx' //easier for tailwind to write conditional classnames
 import { cn } from "@/lib/utils"
+
 type Props = {
     isCorrect: boolean | null,
     correctAnswer: string
@@ -16,19 +17,25 @@ const ResultCard = (props: Props) => {
         "border-green-500" : isCorrect,
         "border-red-500": !isCorrect
     })
-  return (
-    <div className={cn(
+  
+    return (
+      <div className={cn(
         borderClasses,
         "border-2",
         "rounded-lg",
         "p-4",
-        "text-center",
-        "text-lg",
+        "flex", // Enables flexbox
+        "justify-center", // Centers text horizontally
+        "items-center", // Centers text vertically
+        "text-center", // Ensures text alignment
+        "text-xl", // Increases font size
         "font-semibold",
         "my-4",
         "bg-secondary"
-    )}>{text}</div>
-  )
+      )}>
+        {text}
+      </div>
+    )
 }
 
 export default ResultCard
