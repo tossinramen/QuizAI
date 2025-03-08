@@ -79,7 +79,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button"
 
     const containerClasses= clsx({
-      relative: variant === "neo" || variant === "neoOutline" || variant ==="neoSuccess" || variant==="neoDanger"
+      relative: variant === "neo" || variant === "neoOutline" || variant === "neoSuccess" || variant === "neoDanger"
     });
 
 
