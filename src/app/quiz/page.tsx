@@ -89,7 +89,7 @@ export default function Home() {
       </h2>
       <div className="grid grid-cols-1 gap-6 mt-6">
         {questions[currentQuestion].answers.map((answer) => (
-          <Button key={answer.id} variant="secondary" onClick ={() => handleAnswer(answer)}>
+          <Button key={answer.id} variant={"neoOutline"} size="xl" onClick ={() => handleAnswer(answer)}>
             {answer.answerText}
           </Button>
         ))}
