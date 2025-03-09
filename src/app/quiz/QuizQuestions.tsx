@@ -7,6 +7,8 @@ import ResultCard from "./ResultCard";
 import QuizSubmission from "./QuizSubmission"
 import { InferSelectModel } from "drizzle-orm";
 import { questionAnswers, questions as DbQuestions, quizzes } from "@/db/schema";
+import { useRouter } from "next/navigation";
+
 
 type Answer = InferSelectModel<typeof questionAnswers>;
 type Question = InferSelectModel<typeof DbQuestions> & { answers: Answer[]};
@@ -23,6 +25,7 @@ export default function QuizQuestions(props: Props) {
     const [score, setScore] = useState<number>(0);
     const [userAnswers, setUserAnswers] = useState<{ questionId: number, answerId: number }[]>([]);
     const [submitted, setSubmitted] = useState<boolean>(false);
+    const router = useRouter();
 
     const handleNext = () => {
         if(!started) {
@@ -53,8 +56,9 @@ export default function QuizQuestions(props: Props) {
     }
     const scorePercentage: number = Math.round((score/questions.length)*100);
     const selectedAnswer: number | null | undefined = userAnswers.find((item) => item.questionId === questions[currentQuestion].id)?.answerId;
-    const isCorrect: boolean | null | undefined = questions[currentQuestion].answers.findIndex((answer) => answer.id === selectedAnswer) ? questions[currentQuestion].answers.find((answer) => answer.id === selectedAnswer)?.isCorrect : null;
-    
+    const selectedAnswerObj = questions[currentQuestion].answers.find(answer => answer.id === selectedAnswer);
+    const isCorrect = selectedAnswerObj ? selectedAnswerObj.isCorrect : null;
+        
     if (submitted) {
       return (
         <QuizSubmission
@@ -71,13 +75,17 @@ export default function QuizQuestions(props: Props) {
         }
     }
 
+    const handleExit = () => {
+        router.push('/dashboard');
+    }
+
   return (
     <div className="flex flex-col flex-1">
         <div className="position-sticky top-0 z-10 shadow-md py-4 w-full">
             <header className='grid grid-cols-[auto,1fr,auto] grid-flow-col items-center justify-between py-2 gap-2'>
                 <Button size='icon' variant='outline' onClick={handlePressPrev}><ChevronLeft /></Button>
                 <ProgressBar value={(currentQuestion/ questions.length)*100}/>
-                <Button size='icon' variant= 'outline'>
+                <Button size='icon' variant= 'outline' onClick={handleExit}>
                     <X />
                 </Button>
                 
