@@ -24,7 +24,7 @@ const page = async ({ params }: {
         return <div>Quiz not found</div>
     };
     return(
-        <div><QuizQuestions quiz={quiz}/></div>
+        <QuizQuestions quiz={quiz}/>
     )
 }
 
