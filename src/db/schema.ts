@@ -19,7 +19,7 @@ export const quizzes = pgTable("quizzes", {
 });
 
 export const quizzesRelations = relations(quizzes, ({ many, one }) => ({
-    questionss: many(questions),
+    questions: many(questions),
 }));
 
 

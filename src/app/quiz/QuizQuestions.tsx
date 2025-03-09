@@ -8,10 +8,16 @@ import QuizSubmission from "./QuizSubmission"
 import { InferSelectModel } from "drizzle-orm";
 import { questionAnswers, questions as DbQuestions, quizzes } from "@/db/schema";
 
-type Answer = InferS
+type Answer = InferSelectModel<typeof questionAnswers>;
+type Question = InferSelectModel<typeof DbQuestions> & { answers: Answer[]};
+type Quiz = InferSelectModel<typeof quizzes> & { questions: Question[]};
+
+type Props = {
+    quiz: Quiz
+}
 
 export default function QuizQuestions(props: Props) {
-    const { questions } = props;
+    const { questions } = props.quiz;
     const [started, setStarted] = useState<boolean>(false);
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
     const [score, setScore] = useState<number>(0);
@@ -34,7 +40,7 @@ export default function QuizQuestions(props: Props) {
         setIsCorrect(null);
         
     }
-    const handleAnswer = (answer) => {
+    const handleAnswer = (answer: Answer) => {
       setSelectedAnswer(answer.id);
       const isCurrentCorrect = answer.isCorrect;
       if (isCurrentCorrect) {
@@ -92,7 +98,7 @@ export default function QuizQuestions(props: Props) {
     </main>
 
     <footer className="footer pb-9 px-6 relative mb-0">
-      <ResultCard isCorrect={isCorrect} correctAnswer={questions[currentQuestion].answers.find(answer => answer.isCorrect === true)?.answerText} />
+      <ResultCard isCorrect={isCorrect} correctAnswer={questions[currentQuestion].answers.find(answer => answer.isCorrect === true)?.answerText || ""} />
       <Button variant="neo" size="lg" onClick={handleNext}>{!started ?
        'Start' : (currentQuestion === questions.length -1) ? 'Submit'  : 'Next'}</Button>
     </footer>
