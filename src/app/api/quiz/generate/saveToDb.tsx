@@ -31,6 +31,15 @@ export default async function saveQuiz(quizData:SaveQuizData) {
                 quizId
             })
             .returning({QuestionId: dbQuestions.id})
+            if (questions.answers && questions.answers.length > 0) {
+                await tx.insert(questionAnswers).values(
+                    question.answers.map((answer) => ({
+                        answerText: answer.answerText,
+                        isCorrect: answer.isCorrect,
+                        questionId
+                    }))
+                )
+            }
         }
     })
     return { quizId };

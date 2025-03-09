@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ChatOpenAI } from "@langchain/openai";
 import { HumanMessage } from "@langchain/core/messages";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+import saveQuiz from "./saveToDb";
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
 export async function POST(req: NextRequest) {
     const body = await req.formData();
@@ -80,8 +81,9 @@ export async function POST(req: NextRequest) {
 
         const result = await runnable.invoke([message]);
         console.log("API Response:", result); // ✅ Added console log
+        const { quizId } = await saveQuiz(result.quiz);
 
-        return NextResponse.json({ message: "Created successfully", result }, { status: 200 });
+        return NextResponse.json({ quizId }, { status: 200 });
 
     } catch (e: any) {
         console.error("API Error:", e); // ✅ Log error
