@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { SessionProvider } from "next-auth/react";
 import { Session } from 'inspector';
-
+import Header from '@/components/Header';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SessionProvider>
-      <body className={"dark"}>{children}</body>
+      <body className={"dark"}><Header />{children}</body>
       </SessionProvider>
     </html>
   )
