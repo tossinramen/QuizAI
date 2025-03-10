@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { SessionProvider } from "next-auth/react";
 import { Session } from 'inspector';
-import Header from '@/components/Header';
+import Header from '@/components/ui/header';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
