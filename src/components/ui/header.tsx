@@ -40,7 +40,7 @@ const Header = async () => {
                             <Signout />
                         </div>
                     ) : (
-                        <Link href="api/auth/signin"><Button variant="link">Sign in</Button></Link>
+                        <Link href="/api/auth/signin"><Button variant="link" className="rounded-xl border">Sign in</Button></Link>
                     )
                 }
                     </div>
