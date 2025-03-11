@@ -32,10 +32,7 @@ export const quizzes = pgTable("quizzes", {
 
 export const quizzesRelations = relations(quizzes, ({ many, one }) => ({
     questions: many(questions),
-    user: one(users, {
-        fields: [quizzes.userId],
-        references: [users.id],
-    }),
+    submissions: many(quizSubmissions),
 }));
 
 // ✅ Questions Table
@@ -110,4 +107,19 @@ export const verificationTokens = pgTable(
     (verificationToken) => ({
         compositePk: primaryKey(verificationToken.identifier, verificationToken.token),
     })
+);
+
+export const quizSubmissions = pgTable("quiz_submissions", {
+    id: serial("id").primaryKey(),
+    quizId: integer("quiz_id"),
+    score: integer("score")
+})
+
+export const quizSubmissionsRelations = relations(quizSubmissions, ({ one, many }) => ({
+    quiz: one(quizzes, {
+        fields: [quizSubmissions.quizId],
+        references: [quizzes.id],
+
+    }),
+})
 );
