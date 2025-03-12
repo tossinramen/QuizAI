@@ -61,6 +61,7 @@ export default function QuizQuestions(props: Props) {
         catch(e) {
             console.log(e);
         }
+        setSubmitted(true);
     }
 
     const scorePercentage: number = Math.round((score/questions.length)*100);
@@ -122,13 +123,19 @@ export default function QuizQuestions(props: Props) {
         }
       </div>
     </div>
+
   )}
     </main>
 
     <footer className="footer pb-9 px-6 relative mb-0">
       <ResultCard isCorrect={isCorrect} correctAnswer={questions[currentQuestion].answers.find(answer => answer.isCorrect === true)?.answerText || ""} />
-      <Button variant="neo" size="lg" onClick={handleNext}>{!started ?
-       'Start' : (currentQuestion === questions.length -1) ? 'Submit'  : 'Next'}</Button>
+        {
+            (currentQuestion === questions.length -1 ) ? <Button variant="neo" size="lg" onClick={handleSubmit}>Submit</Button> :
+            <Button variant="neo" size="lg" onClick={handleNext}>{!started ?
+                'Start' : 'Next'}</Button>
+
+        }
+      
     </footer>
     </div>
   )
