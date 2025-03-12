@@ -8,7 +8,7 @@ import QuizSubmission from "./QuizSubmission"
 import { InferSelectModel } from "drizzle-orm";
 import { questionAnswers, questions as DbQuestions, quizzes } from "@/db/schema";
 import { useRouter } from "next/navigation";
-
+import { saveSubmission } from "../actions/saveSubmissions";
 
 type Answer = InferSelectModel<typeof questionAnswers>;
 type Question = InferSelectModel<typeof DbQuestions> & { answers: Answer[]};
@@ -54,6 +54,15 @@ export default function QuizQuestions(props: Props) {
         setScore(score+1);
       }
     }
+
+
+    const handleSubmit = async () => {
+        try {const subId = await saveSubmission({score}, props.quiz.id);}
+        catch(e) {
+            console.log(e);
+        }
+    }
+
     const scorePercentage: number = Math.round((score/questions.length)*100);
     const selectedAnswer: number | null | undefined = userAnswers.find((item) => item.questionId === questions[currentQuestion].id)?.answerId;
     const selectedAnswerObj = questions[currentQuestion].answers.find(answer => answer.id === selectedAnswer);
