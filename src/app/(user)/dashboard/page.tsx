@@ -22,13 +22,18 @@ const page = async () => {
     console.log(userData);
     
     return (
-        <>
-            {userData?.length > 0 &&
-                userData.map((metric) => (
-                    <MetricCard key={metric.label} label={metric.label} value={metric.value} />
-                ))}
+        <div className="mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            {userData && userData.length > 0 && (
+                <>
+                    {userData.map((metric) => (
+                        <MetricCard key={metric.label} label={metric.label} value={metric.value} />
+                    ))}
+                </>
+            )}
+            </div>
             <QuizzesTable quizzes={userQuizzes} />
-        </>
+        </div>
     );
 };
 
