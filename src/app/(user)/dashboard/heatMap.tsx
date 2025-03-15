@@ -3,26 +3,28 @@
 import React from 'react';
 import Tooltip from '@uiw/react-tooltip';
 import HeatMap from '@uiw/react-heat-map';
+import { convertDateToString } from '@/lib/utils';
+type Props= {
+    data: {
+        createdAt: Date;
+        count: number;
+    }[];
+}
 
-const value = [
-  { date: '2016/01/11', count:2 },
-  ...[...Array(17)].map((_, idx) => ({ date: `2016/01/${idx + 10}`, count: idx, })),
-  ...[...Array(17)].map((_, idx) => ({ date: `2016/02/${idx + 10}`, count: idx, })),
-  { date: '2016/04/12', count:2 },
-  { date: '2016/05/01', count:5 },
-  { date: '2016/05/02', count:5 },
-  { date: '2016/05/03', count:1 },
-  { date: '2016/05/04', count:11 },
-  { date: '2016/05/08', count:32 },
-];
 
-const Demo = () => {
+const panelColors = ['var(--rhm-rect, #4b515c)','#C6E48B','#7BC96F', '#239A3B', '#196127']
+
+const SubmissionsHeatMap = (props: Props) => {
+    const formattedDates = props.data.map((item) => ({ date: convertDateToString(item.createdAt), count: item.count}));
+    
   return (
     <HeatMap
-      value={value}
-      width={600}
-      style={{backgroundColor: "#000", color: "#888"}}
-      startDate={new Date('2016/01/01')}
+      value={formattedDates}
+      width="100%"
+      style={{color: "#888"}}
+      startDate={new Date('2025/01/01')}
+      panelColors={panelColors}
+      
       rectRender={(props, data) => {
         // if (!data.count) return <rect {...props} />;
         return (
@@ -34,4 +36,4 @@ const Demo = () => {
     />
   )
 };
-export default Demo
+export default SubmissionsHeatMap;
