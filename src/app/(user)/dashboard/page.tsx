@@ -6,7 +6,7 @@ import QuizzesTable, { Quiz } from "./quizzesTable";
 import getUserMetrics from "@/app/actions/getUserMetrics";
 import MetricCard from "./metricCard";
 import getHeatMapData from "@/app/actions/getHeatMapData";
-
+import Demo from "./heatMap";
 const page = async () => {
     const session = await auth();
     const userId = session?.user?.id;
@@ -33,6 +33,9 @@ const page = async () => {
                     ))}
                 </>
             )}
+            </div>
+            <div>
+                <Demo />
             </div>
             <QuizzesTable quizzes={userQuizzes} />
         </div>
