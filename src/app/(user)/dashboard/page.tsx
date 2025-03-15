@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import QuizzesTable, { Quiz } from "./quizzesTable";
 import getUserMetrics from "@/app/actions/getUserMetrics";
 import MetricCard from "./metricCard";
+import getHeatMapData from "@/app/actions/getHeatMapData";
 
 const page = async () => {
     const session = await auth();
@@ -19,7 +20,8 @@ const page = async () => {
     });
     
     const userData = await getUserMetrics();
-    console.log(userData);
+    const heatMapData = await getHeatMapData();
+    console.log(heatMapData);
     
     return (
         <div className="mt-4">

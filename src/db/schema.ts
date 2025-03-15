@@ -112,7 +112,8 @@ export const verificationTokens = pgTable(
 export const quizSubmissions = pgTable("quiz_submissions", {
     id: serial("id").primaryKey(),
     quizId: integer("quiz_id"),
-    score: integer("score")
+    score: integer("score"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
 export const quizSubmissionsRelations = relations(quizSubmissions, ({ one, many }) => ({
