@@ -8,6 +8,8 @@ import MetricCard from "./metricCard";
 import getHeatMapData from "@/app/actions/getHeatMapData";
 import Demo from "./heatMap";
 import SubmissionsHeatMap from "./heatMap";
+import SubscribeBtn from "../billing/SubscribeBtn";
+import { PRICE_ID } from "@/lib/utils";
 const page = async () => {
     const session = await auth();
     const userId = session?.user?.id;
@@ -41,6 +43,7 @@ const page = async () => {
                 }
                 
             </div>
+            <SubscribeBtn userId="userId" price={PRICE_ID} />
             <QuizzesTable quizzes={userQuizzes} />
         </div>
     );
