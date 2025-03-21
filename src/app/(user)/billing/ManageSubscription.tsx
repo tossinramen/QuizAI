@@ -4,30 +4,26 @@ import { getStripe } from "@/lib/stripe-client";
 import { useRouter } from "next/navigation";
 import {Button} from "@/components/ui/button"
 import { Loader2 } from "lucide-react";
-type Props = {
-    userId?: string,
-    price: string
-}
 
-const SubscribeBtn = ({ userId, price} : Props) => {
+
+const ManageSubscription = () => {
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
-    const handleCheckout = async(price: string) => {
-        if(!userId) {
-            router.push('/login')
-        }
+    const redirectToCustomerPortal = async() => {
+        
         setLoading(true);
 
         try {
-            const { sessionId } = await fetch('/api/stripe/checkout-session', {
+            const { url } = await fetch('/api/stripe/create-portal', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ price })
+                
             }).then((res) => res.json());
             const stripe = await getStripe();
-            stripe?.redirectToCheckout({ sessionId });
+            router.push(url.url);
+
         } catch (error) {
             setLoading(false);
             console.log('Subscribe Button Error', error)
@@ -36,12 +32,12 @@ const SubscribeBtn = ({ userId, price} : Props) => {
 
     }
     return(
-        <Button disabled={loading} onClick={() => handleCheckout(price)}>{
+        <Button disabled={loading} onClick={redirectToCustomerPortal}>{
             loading ? <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Please Wait
             </>:
-            "Upgrade Your Plan"}</Button>
+            "Change Your Subscription"}</Button>
     )
 }
 
