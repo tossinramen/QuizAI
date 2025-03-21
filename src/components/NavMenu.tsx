@@ -52,11 +52,15 @@ export function NavMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
+            <User className="mr-2 h-4 w-4" />
             Profile
             
           </DropdownMenuItem>
           <DropdownMenuItem>
+          <Link href="/billing" className="flex flexr-row">
+            <CreditCard className="mr-2 h-4 w-4" />
             Billing
+          </Link>
             
           </DropdownMenuItem>
           <DropdownMenuItem>
