@@ -3,7 +3,7 @@ import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 
-export async function createSubscrpition({
+export async function createSubscription({
     stripeCustomerId
 }:{
     stripeCustomerId: string
@@ -21,7 +21,7 @@ export async function createSubscrpition({
     );
 }
 
-export async function deleteSubscrpition({
+export async function deleteSubscription({
     stripeCustomerId
 }:{
     stripeCustomerId: string

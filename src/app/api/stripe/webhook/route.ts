@@ -7,7 +7,7 @@ import {
 
 
 const relevantEvents = new Set([
-    "checkout.session.commpleted",
+    "checkout.session.completed",
     "customer.subscription.updated",
     "customer.subscription.deleted",
     "customer.subscription.created",
@@ -21,8 +21,10 @@ export async function POST(
     const sig = req.headers.get(
         "stripe-signature"
     ) as string;
+    const webHookSecret = process.env.NODE_ENV === "production" ?
+    process.env.STRIPE_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_LOCAL_SECRET
     if (
-        !process.env.STRIPE_WEBHOOK_SECRET
+        !webHookSecret
     ) {
         throw new Error(
             "STRIPE_WEBHOOK_SECRET is not set"
@@ -33,7 +35,7 @@ export async function POST(
     const event = stripe.webhooks.constructEvent(
         body,
         sig,
-        process.env.STRIPE_WEBHOOK_SECRET
+        webHookSecret
     );
     const data = event.data.object as Stripe.Subscription;
 
@@ -46,7 +48,7 @@ export async function POST(
                 })
                 break;
             }
-            case: "customer.subscription.deleted": {
+            case "customer.subscription.deleted": {
                 await deleteSubscription({
                     stripeCustomerId: data.customer as string
                 });
