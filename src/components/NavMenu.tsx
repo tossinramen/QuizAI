@@ -14,6 +14,7 @@ import {
     UserPlus,
     Users,
     BarChartBig,
+    
 
 
 
@@ -54,6 +55,13 @@ export function NavMenu() {
           <DropdownMenuItem>
             <User className="mr-2 h-4 w-4" />
             Profile
+            
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+          <Link href="/quiz/new" className="flex flexr-row">
+            <Plus className="mr-2 h-4 w-4" />
+            New Quiz
+          </Link>
             
           </DropdownMenuItem>
           <DropdownMenuItem>

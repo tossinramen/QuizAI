@@ -12,6 +12,7 @@ type Props = {
 const SubscribeBtn = ({ userId, price} : Props) => {
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
+    
     const handleCheckout = async(price: string) => {
         if(!userId) {
             router.push('/login')
