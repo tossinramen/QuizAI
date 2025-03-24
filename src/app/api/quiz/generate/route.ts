@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
 
         const message = new HumanMessage(prompt + "\n" + texts);
 
-        const result = await runnable.invoke([message]);
+        const result : any = await runnable.invoke([message]);
 
         console.log("API Response:", result); // ✅ Added console log
         const { quizId } = await saveQuiz(result.quiz);

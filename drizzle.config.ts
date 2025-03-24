@@ -5,9 +5,9 @@ export default {
   out: "./drizzle",
   driver: "pg",
   dbCredentials: {
-    connectionString:
-      process.env.DATABASE_URL ||
-      "postgres://postgres:postgres@localhost:5432/postgres",
-    ssl: { rejectUnauthorized: false }, // ✅ Fix for Supabase SSL
+    connectionString: 
+      process.env.DATABASE_URL || 
+      "postgres://postgres:postgres@localhost:5432/postgres"
+    
   },
 } satisfies Config;

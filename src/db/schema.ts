@@ -7,7 +7,7 @@ import {
     serial,
     boolean,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 
 // ✅ User Table (exact match for NextAuth)
 export const users = pgTable("user", {
@@ -29,7 +29,8 @@ export const quizzes = pgTable("quizzes", {
     id: serial("id").primaryKey(),
     name: text("name"),
     description: text("description"),
-    userId: text("userId").references(() => users.id, { onDelete: "set null" }).default(null),
+    userId: text("userId").references(() => users.id, { onDelete: "set null" }).default(sql`NULL`),
+   
 });
 
 export const quizzesRelations = relations(quizzes, ({ many, one }) => ({
