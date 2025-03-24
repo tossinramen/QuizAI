@@ -1,3 +1,4 @@
+
 import UploadDoc from "../UploadDoc";
 import { auth, signIn } from "@/auth";
 import { getUserSubscription } from "@/app/actions/userSubscription";
@@ -7,6 +8,7 @@ import { useRouter } from "next/navigation";
 import {Button} from "@/components/ui/button"
 import { Loader2 } from "lucide-react";
 import { Lock, Flame } from "lucide-react";
+import { PRICE_ID } from "@/lib/utils";
 const page = async () => {
     const session = await auth();
     const router = useRouter();
@@ -51,7 +53,7 @@ const page = async () => {
                 <h2 className="text-3xl font-bold mb-4">What do you want to be quizzed about today?</h2>
             <UploadDoc />
             </> :
-            <button onClick={onNavigateToUpgrade} className="rounded-md bg-primary p-10 sm:h-80 sm:w-80">
+            <button onClick={() => onNavigateToUpgrade(PRICE_ID)} className="rounded-md bg-primary hover:bg-primary-shadow p-10 sm:h-80 sm:w-80">
                 
                 <div className="flex items-center flex-col cursor-pointer w-full h-full">
                     <div className="flex-1 flex items-center flex-col">
