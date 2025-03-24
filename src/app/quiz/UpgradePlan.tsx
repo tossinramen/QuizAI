@@ -42,6 +42,5 @@ return(
                 </div>
             </button>
 )
-}
 };
 export default UpgradePlan;

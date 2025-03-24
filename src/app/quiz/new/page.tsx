@@ -12,7 +12,7 @@ import { PRICE_ID } from "@/lib/utils";
 import UpgradePlan from "../UpgradePlan";
 const page = async () => {
     const session = await auth();
-    const router = useRouter();
+    //const router = useRouter();
     const userId = session?.user?.id;
     if (!userId){
         signIn();
