@@ -77,7 +77,11 @@ export async function POST(req: NextRequest) {
 
         const message = new HumanMessage(prompt + "\n" + texts);
 
+<<<<<<< HEAD
         const result : any = await runnable.invoke([message]);
+=======
+        const result = await runnable.invoke([message]);
+>>>>>>> recovered-history
 
         console.log("API Response:", result); // ✅ Added console log
         const { quizId } = await saveQuiz(result.quiz);
