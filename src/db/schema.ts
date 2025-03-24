@@ -7,11 +7,7 @@ import {
     serial,
     boolean,
 } from "drizzle-orm/pg-core";
-<<<<<<< HEAD
 import { relations, sql } from "drizzle-orm";
-=======
-import { relations } from "drizzle-orm";
->>>>>>> recovered-history
 
 // ✅ User Table (exact match for NextAuth)
 export const users = pgTable("user", {
@@ -33,12 +29,8 @@ export const quizzes = pgTable("quizzes", {
     id: serial("id").primaryKey(),
     name: text("name"),
     description: text("description"),
-<<<<<<< HEAD
     userId: text("userId").references(() => users.id, { onDelete: "set null" }).default(sql`NULL`),
    
-=======
-    userId: text("userId").references(() => users.id, { onDelete: "set null" }).default(null),
->>>>>>> recovered-history
 });
 
 export const quizzesRelations = relations(quizzes, ({ many, one }) => ({

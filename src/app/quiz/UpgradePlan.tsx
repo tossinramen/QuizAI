@@ -1,10 +1,4 @@
 "use client";
-<<<<<<< HEAD
-=======
-import { auth, signIn } from "@/auth";
-import { getUserSubscription } from "@/app/actions/userSubscription";
-import { useState } from "react";
->>>>>>> recovered-history
 import { getStripe } from "@/lib/stripe-client";
 import { useRouter } from "next/navigation";
 import {Button} from "@/components/ui/button"
@@ -13,7 +7,6 @@ import { Lock, Flame } from "lucide-react";
 import { PRICE_ID } from "@/lib/utils";
 const UpgradePlan = () => {
     const onNavigateToUpgrade = async(price: string) => {
-<<<<<<< HEAD
     
         try {
             const { sessionId } = await fetch('/api/stripe/checkout-session', {
@@ -33,9 +26,6 @@ const UpgradePlan = () => {
 
     }
 return(
-=======
-        
->>>>>>> recovered-history
     <button onClick={() => onNavigateToUpgrade(PRICE_ID)} className="rounded-md bg-primary hover:bg-primary-shadow p-10 sm:h-80 sm:w-80">
                 
                 <div className="flex items-center flex-col cursor-pointer w-full h-full">
@@ -51,10 +41,6 @@ return(
                         </div>
                 </div>
             </button>
-<<<<<<< HEAD
 )
-=======
-}
->>>>>>> recovered-history
 };
 export default UpgradePlan;

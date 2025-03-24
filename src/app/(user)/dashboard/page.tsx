@@ -43,10 +43,6 @@ const page = async () => {
                 }
                 
             </div>
-<<<<<<< HEAD
-=======
-            <SubscribeBtn userId="userId" price={PRICE_ID} />
->>>>>>> recovered-history
             <QuizzesTable quizzes={userQuizzes} />
         </div>
     );
