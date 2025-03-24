@@ -52,11 +52,7 @@ export function NavMenu() {
           </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
-            Profile
-            
-          </DropdownMenuItem>
+          
           <DropdownMenuItem>
           <Link href="/quiz/new" className="flex flexr-row">
             <Plus className="mr-2 h-4 w-4" />
@@ -84,8 +80,15 @@ export function NavMenu() {
         
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>GitHub</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
+        <DropdownMenuItem asChild>
+  <a
+    href="https://github.com/tossinramen/QuizAI"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    GitHub
+  </a>
+</DropdownMenuItem>
         
     
       </DropdownMenuContent>
