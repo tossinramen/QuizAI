@@ -102,14 +102,3 @@ The application will be available at `http://localhost:3000`
    - Track performance metrics
    - Edit or delete existing quizzes
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support
-
-For support, please open an issue in the GitHub repository or contact the development team.
